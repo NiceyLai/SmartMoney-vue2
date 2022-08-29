@@ -1,13 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div>
-Money.vue
+        Money.vue
+        <Nav/>
     </div>
 </template>
 
 <script lang="ts">
-    export default {
-     
+import Nav from '@/components/Nav.vue'
+export default {
+          // eslint-disable-next-line vue/multi-word-component-names
+        name:'Money',
+     components:{Nav}
     };
 </script>
 

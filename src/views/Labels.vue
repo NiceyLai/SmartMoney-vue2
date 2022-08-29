@@ -1,15 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div>
-label.vue
+        label.vue
+        <Nav/>
     </div>
 </template>
 
 <script lang="ts">
-    export default {
+import Nav from '@/components/Nav.vue'
+export default {
         // eslint-disable-next-line vue/multi-word-component-names
-        name:'Labels'
-    }
+        name:'Labels',
+     components:{Nav}
+    };
 </script>
 
 <style lang="scss" scoped>
