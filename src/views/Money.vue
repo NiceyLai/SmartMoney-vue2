@@ -1,9 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="nav-wrapper">
-        <div class="content">Money.vue</div>
-        <Nav/>
-    </div>
+    <div>
+        <Layout>
+            <p>Money.vue你好</p>
+            </Layout>
+        </div>
 </template>
 
 <script lang="ts">
@@ -14,15 +15,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-wrapper {
-    border: 1px solid green;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-.content{
-    border: 1px solid blue;
-    overflow: auto;
-    flex-grow: 1;
-}
+
 </style>
