@@ -1,23 +1,24 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!-- eslint-disable vue/valid-template-root -->
 <template>
-    <div class="nav-wrapper">
-        <div class="content">
-            <slot></slot>
-            </div>
-        <Nav/>
+    <div class="layout-wrapper" :class="classPrefix && `${classPrefix}-wrapper`">
+    <div class="content" :class="classPrefix && `${classPrefix}-content`   ">
+      <slot></slot>
+    </div>
+    <Nav></Nav>
     </div>
 </template>
 
 <script lang="ts">
 export default {
+    props: ['classPrefix'],
           // eslint-disable-next-line vue/multi-word-component-names
         name:'Layout',
     };
 </script>
 
 <style lang="scss" scoped>
-.nav-wrapper {
+.layout-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
