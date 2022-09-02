@@ -1,11 +1,9 @@
-<!-- eslint-disable vue/multi-word-component-names -->
+<!-- eslint-disable vue/no-parsing-error -->
 <template>
   <div>
     <ul class="types">
-      <li :class="type === '-' && 'selected'">
-        @click="selectType( type: '-' )"支出
-      </li>
-      <li :class="type === '+' && 'selected'">收入</li>
+      <li :class="type === '-' && 'selected'" @click="selectType('-')">支出</li>
+      <li :class="type === '+' && 'selected'" @click="selectType('-')">收入</li>
     </ul>
   </div>
 </template>
