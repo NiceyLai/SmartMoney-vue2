@@ -3,29 +3,48 @@
   <div>
     <ul class="types">
       <li :class="type === '-' && 'selected'" @click="selectType('-')">支出</li>
-      <li :class="type === '+' && 'selected'" @click="selectType('-')">收入</li>
+      <li :class="type === '+' && 'selected'" @click="selectType('+')">收入</li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Types",
-  data() {
-    return {
-      type: "-", // '-'表示支出，'+'表示收入    };
-    };
-  },
-  method: {
-    selectType(type) {
-      if (type !== "-" && type !== "+") {
-        throw new Error("type is unknow");
-      }
-      this.type = type;
-    },
-  },
-};
+<script lang="ts">
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class Types extends Vue {
+  type = "-"; // '-'表示支出，'+'表示收入    };
+  selectType(type: string) {
+    if (type !== "-" && type !== "+") {
+      throw new Error("type is unknow");
+    }
+    this.type = type;
+  }
+}
+
+// export default {
+//   // eslint-disable-next-line vue/multi-word-component-names
+//   name: "Types",
+//   props: ["xxx"],
+//   data() {
+//     return {
+//       type: "-", // '-'表示支出，'+'表示收入    };
+//     };
+//   },
+//   methods: {
+//     selectType(type) {
+//       console.log(222222);
+//       if (type !== "-" && type !== "+") {
+//         throw new Error("type is unknow");
+//       }
+//       this.type = type;
+//     },
+//   },
+//   mounted() {
+//     console.log(this.xxx);
+//   },
+// };
 </script>
 
 <style lang="scss" scoped>

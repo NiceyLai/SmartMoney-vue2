@@ -2,7 +2,7 @@
 <template>
   <Layout class-prefix="layout">
     <Number></Number>
-    <Types></Types>
+    <Types xxx="hi"></Types>
     <Notes></Notes>
     <Tages></Tages>
   </Layout>
