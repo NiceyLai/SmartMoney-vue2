@@ -4,11 +4,11 @@
     <Number></Number>
     <Types></Types>
     <Notes></Notes>
-    <Tages></Tages>
+    <Tages :data-source="tages"></Tages>
   </Layout>
 </template>
 
-<script lang="ts">
+<script>
 import Number from "../components/Money/Number.vue";
 import Types from "../components/Money/Types.vue";
 import Tages from "../components/Money/Tages.vue";
@@ -18,6 +18,11 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Money",
   components: { Tages, Notes, Types, Number },
+  data() {
+    return {
+      tages: ["衣", "食", "住", "行", "买"],
+    };
+  },
 };
 </script>
 
