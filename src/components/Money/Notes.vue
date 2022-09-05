@@ -2,14 +2,31 @@
 <template>
   <div>
     <label class="notes">
+      {{ value }}
       <span class="name">备注</span>
-      <input type="text" placeholder="在这里输入备注" />
+      <input
+        type="text"
+        :value="value"
+        @input="onInput"
+        placeholder="在这里输入备注"
+      />
     </label>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      value: "",
+    };
+  },
+  methods: {
+    onInput(e) {
+      this.value = e.target.value;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
