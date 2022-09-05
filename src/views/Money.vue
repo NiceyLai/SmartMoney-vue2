@@ -4,7 +4,7 @@
     <Number></Number>
     <Types></Types>
     <Notes></Notes>
-    <Tages :data-source="tages"></Tages>
+    <Tages :data-source.sync="tages"></Tages>
   </Layout>
 </template>
 

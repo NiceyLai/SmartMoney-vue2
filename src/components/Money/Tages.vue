@@ -2,7 +2,7 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button>新增标签</button>
+      <button @click="create">新增标签</button>
     </div>
     <ul class="current">
       <li
@@ -23,7 +23,7 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Tages extends Vue {
-  @Prop(Array) dataSource: string[] | undefined;
+  @Prop(Array) readonly dataSource: string[] | undefined;
   selectedTages: string[] = [];
   toggle(tage: string) {
     const index = this.selectedTages.indexOf(tage);
@@ -31,6 +31,14 @@ export default class Tages extends Vue {
       this.selectedTages.splice(index, 1);
     } else {
       this.selectedTages.push(tage);
+    }
+  }
+  create() {
+    const name = window.prompt("请输入标签名");
+    if (name === "") {
+      window.alert("标签名不能为空");
+    } else if (this.dataSource) {
+      this.$emit("update:dataSource", [...this.dataSource, name]);
     }
   }
 }
