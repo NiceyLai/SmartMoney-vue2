@@ -10,13 +10,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 
 @Component
 export default class Types extends Vue {
   type = "-"; // '-'表示支出，'+'表示收入
-
-  // @Prop(Number) readonly xxx: number | undefined;
 
   selectType(type: string) {
     if (type !== "-" && type !== "+") {
@@ -24,30 +22,12 @@ export default class Types extends Vue {
     }
     this.type = type;
   }
-}
 
-// export default {
-//   // eslint-disable-next-line vue/multi-word-component-names
-//   name: "Types",
-//   props: ["xxx"],
-//   data() {
-//     return {
-//       type: "-", // '-'表示支出，'+'表示收入    };
-//     };
-//   },
-//   methods: {
-//     selectType(type) {
-//       console.log(222222);
-//       if (type !== "-" && type !== "+") {
-//         throw new Error("type is unknow");
-//       }
-//       this.type = type;
-//     },
-//   },
-//   mounted() {
-//     console.log(this.xxx);
-//   },
-// };
+  @Watch("type")
+  onTypeChanged(value: string) {
+    this.$emit("update:value", value);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -32,6 +32,7 @@ export default class Tages extends Vue {
     } else {
       this.selectedTages.push(tage);
     }
+    this.$emit("update:value", this.selectedTages);
   }
   create() {
     const name = window.prompt("请输入标签名");
