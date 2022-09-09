@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
+    {{ recordList }}
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Types :value.sync="record.type"></Types>
     <Notes @update:value="onUpdateNotes"></Notes>
@@ -22,12 +22,15 @@ type Record = {
   notes: string;
   type: string;
   amount: number;
+  createAt?: Date;
 };
 
 @Component({ components: { Tages, Notes, Types, Number } })
 export default class Money extends Vue {
   tages = ["衣", "食", "住", "行", "买"];
-  recordList: Record[] = [];
+  recordList: Record[] = JSON.parse(
+    window.localStorage.getItem("recordList") || "[]"
+  );
   record: Record = { tages: [], notes: "", type: "-", amount: 0 };
 
   onUpdateTages(value: string[]) {
@@ -43,7 +46,8 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    const record2 = JSON.parse(JSON.stringify(this.record));
+    const record2: Record = JSON.parse(JSON.stringify(this.record));
+    record2.createAt = new Date();
     this.recordList.push(record2);
     console.log(this.recordList);
   }
