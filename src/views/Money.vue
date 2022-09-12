@@ -10,33 +10,21 @@
 </template>
 
 <script lang="ts">
-import Vue, { watch } from "vue";
+import Vue from "vue";
 import Number from "../components/Money/Number.vue";
 import Types from "../components/Money/Types.vue";
 import Tages from "../components/Money/Tages.vue";
 import Notes from "../components/Money/Notes.vue";
 import { Component, Watch } from "vue-property-decorator";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { model } = require("@/model.js");
-console.log(model);
+import model from "@/model";
 
-const recordList: Record[] = model.fetch();
-
-type Record = {
-  tages: string[];
-  notes: string;
-  type: string;
-  amount: number;
-  createAt?: Date;
-};
+const recordList = model.fetch();
 
 @Component({ components: { Tages, Notes, Types, Number } })
 export default class Money extends Vue {
   tages = ["衣", "食", "住", "行", "买"];
-  recordList: Record[] = JSON.parse(
-    window.localStorage.getItem("recordList") || "[]"
-  );
-  record: Record = { tages: [], notes: "", type: "-", amount: 0 };
+  recordList: RecordItem[] = recordList;
+  record: RecordItem = { tages: [], notes: "", type: "-", amount: 0 };
 
   onUpdateTages(value: string[]) {
     this.record.tages = value;
@@ -51,7 +39,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    const record2: Record = JSON.parse(JSON.stringify(this.record));
+    const record2: RecordItem = model.clone(this.record);
     record2.createAt = new Date();
     this.recordList.push(record2);
     console.log(this.recordList);
@@ -59,7 +47,7 @@ export default class Money extends Vue {
 
   @Watch("recordList")
   onRecordListChanged() {
-    localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    model.save(this.recordList);
   }
 }
 </script>
