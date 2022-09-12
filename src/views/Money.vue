@@ -1,11 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <Layout class-prefix="layout">
-    {{ recordList }}
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Types :value.sync="record.type"></Types>
     <Notes @update:value="onUpdateNotes"></Notes>
-    <tages :data-source.sync="tages" @update:value="onUpdateTages"></tages>
+    <tags :data-source.sync="tags" @update:value="onUpdateTags"></tags>
   </Layout>
 </template>
 
@@ -13,21 +12,23 @@
 import Vue from "vue";
 import Number from "../components/Money/Number.vue";
 import Types from "../components/Money/Types.vue";
-import Tages from "../components/Money/Tages.vue";
+import Tags from "../components/Money/Tags.vue";
 import Notes from "../components/Money/Notes.vue";
 import { Component, Watch } from "vue-property-decorator";
-import model from "@/model";
+import recordListModel from "@/models/recordListModel";
+import tagListModel from "@/models/tagListModel";
 
-const recordList = model.fetch();
+const recordList = recordListModel.fetch();
+const tagList = tagListModel.fetch();
 
-@Component({ components: { Tages, Notes, Types, Number } })
+@Component({ components: { Tags, Notes, Types, Number } })
 export default class Money extends Vue {
-  tages = ["衣", "食", "住", "行", "买"];
+  tags = tagList;
   recordList: RecordItem[] = recordList;
-  record: RecordItem = { tages: [], notes: "", type: "-", amount: 0 };
+  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
 
-  onUpdateTages(value: string[]) {
-    this.record.tages = value;
+  onUpdateTags(value: string[]) {
+    this.record.tags = value;
   }
 
   onUpdateNotes(value: string) {
@@ -39,7 +40,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    const record2: RecordItem = model.clone(this.record);
+    const record2: RecordItem = recordListModel.clone(this.record);
     record2.createAt = new Date();
     this.recordList.push(record2);
     console.log(this.recordList);
@@ -47,7 +48,7 @@ export default class Money extends Vue {
 
   @Watch("recordList")
   onRecordListChanged() {
-    model.save(this.recordList);
+    recordListModel.save(this.recordList);
   }
 }
 </script>
