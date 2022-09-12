@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <Layout class-prefix="layout">
+    {{ recordList }}
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Types :value.sync="record.type"></Types>
     <Notes @update:value="onUpdateNotes"></Notes>
@@ -15,20 +16,11 @@ import Types from "../components/Money/Types.vue";
 import Tages from "../components/Money/Tages.vue";
 import Notes from "../components/Money/Notes.vue";
 import { Component, Watch } from "vue-property-decorator";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { model } = require("@/model.js");
+console.log(model);
 
-// const version = window.localStorage.getItem("version") || "0.0";
-// const recordList: Record[] = JSON.parse(
-//   window.localStorage.getItem("recordList") || "[]"
-// );
-// if (version === "0.0.1") {
-//   // 数据库升级，数据迁移
-//   recordList.forEach((record) => {
-//     record.createAt = new Date(2022, 0, 1);
-//   });
-//   // 保存数据
-//   window.localStorage.setItem("recordList", JSON.stringify(recordList));
-// }
-// window.localStorage.setItem("version", "0.0.2");
+const recordList: Record[] = model.fetch();
 
 type Record = {
   tages: string[];
