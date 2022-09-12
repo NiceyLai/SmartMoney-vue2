@@ -1,20 +1,19 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <div>
+    <div>当前页面不存在，请检查网址是否正确</div>
     <div>
-        <div>当前页面不存在，请检查网址是否正确</div>
-        <div>
-            <router-link to="/">返回首页</router-link>
-        </div>
+      <router-link to="/">返回首页</router-link>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
-export default {
-          // eslint-disable-next-line vue/multi-word-component-names
-        name:'NotFound',
-    };
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class NotFound extends Vue {}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
