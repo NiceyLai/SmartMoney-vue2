@@ -9,6 +9,7 @@
     <div class="form-wrapper">
       <FormItem
         :value="tag.name"
+        @update:value="updateTag"
         field-name="标签名"
         placeholder="请输入标签名"
       />
@@ -41,6 +42,11 @@ export default class EditLabel extends Vue {
     } else {
       this.$router.replace("/404");
     }
+
+    // updateTag(name:string){
+    //   console.log(name);
+
+    // }
   }
 }
 </script>
