@@ -1,12 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <Layout>编辑标签</Layout>
+  <Layout>
+    <div>
+      <Icon name="left" />
+      <span>编辑标签</span>
+    </div>
+  </Layout>
 </template>
 
 <script lang="ts">
 import tagListModel from "@/models/tagListModel";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import Icon from "@/components/Icon.vue";
 
 @Component
 export default class EditLabel extends Vue {
