@@ -3,7 +3,11 @@
   <Layout class-prefix="layout">
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Types :value.sync="record.type"></Types>
-    <Notes @update:value="onUpdateNotes"></Notes>
+    <Notes
+      field-name="备注"
+      placeholder="在这里输入备注"
+      @update:value="onUpdateNotes"
+    ></Notes>
     <tags :data-source.sync="tags" @update:value="onUpdateTags"></tags>
   </Layout>
 </template>
