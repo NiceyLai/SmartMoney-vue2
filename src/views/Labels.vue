@@ -13,7 +13,7 @@
       </router-link>
     </div>
     <div class="creatTag-wrapper">
-      <button class="creatTag" @click="creatTag">新建标签</button>
+      <Button class="creatTag" @click="creatTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -22,6 +22,7 @@
 import tagListModel from "@/models/tagListModel";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import Button from "../components/Button.vue";
 
 tagListModel.fetch();
 
