@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <Layout class-prefix="layout">
+    {{ record }}
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Types :value.sync="record.type"></Types>
     <div class="notes">
