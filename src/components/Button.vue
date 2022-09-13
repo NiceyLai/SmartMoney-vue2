@@ -21,10 +21,5 @@ export default class Button extends Vue {}
   border-radius: 4px;
   height: 40px;
   padding: 0 16px;
-  &-wrapper {
-    text-align: center;
-    padding: 16px;
-    margin-top: 44-16px;
-  }
 }
 </style>

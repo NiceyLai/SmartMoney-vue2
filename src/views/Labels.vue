@@ -26,7 +26,7 @@ import Button from "../components/Button.vue";
 
 tagListModel.fetch();
 
-@Component
+@Component({ components: { Button } })
 export default class Labels extends Vue {
   tags = tagListModel.data;
 
@@ -64,12 +64,6 @@ export default class Labels extends Vue {
 }
 
 .creatTag {
-  background: #767676;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  height: 40px;
-  padding: 0 16px;
   &-wrapper {
     text-align: center;
     padding: 16px;
