@@ -38,15 +38,14 @@ export default class EditLabel extends Vue {
     const tag = tags.filter((t) => t.id === id)[0];
     if (tag) {
       this.tag = tag;
-      console.log(tag);
     } else {
       this.$router.replace("/404");
     }
-
-    // updateTag(name:string){
-    //   console.log(name);
-
-    // }
+  }
+  updateTag(name: string) {
+    if (this.tag) {
+      tagListModel.update(this.tag.id, name);
+    }
   }
 }
 </script>
