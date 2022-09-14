@@ -51,12 +51,14 @@ export default class Labels extends Vue {
   font-size: 16px;
   padding-left: 16px;
   > .tag {
-    min-width: 44px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #e6e6e6;
     svg {
+      width: 18px;
+      height: 18px;
       color: #666;
       margin-right: 16px;
     }
