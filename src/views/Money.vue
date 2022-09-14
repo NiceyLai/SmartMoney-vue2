@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Types :value.sync="record.type"></Types>
     <div class="notes">
@@ -50,7 +49,6 @@ export default class Money extends Vue {
     const record2: RecordItem = recordListModel.clone(this.record);
     record2.createAt = new Date();
     this.recordList.push(record2);
-    console.log(this.recordList);
   }
 
   @Watch("recordList")
