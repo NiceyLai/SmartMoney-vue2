@@ -26,4 +26,6 @@ interface Window{
   // updateTag:TagListModel['update']
   updateTag:(id: string, name: string) => 'success' | 'duplicated' | 'not found'
   
+  recordList: RecordItem[]
+  createRecord:(record:RecordItem)=>void
 }
