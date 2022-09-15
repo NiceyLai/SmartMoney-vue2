@@ -19,5 +19,6 @@ type TagListModel = {
   save: () => void
 }
 interface Window{
-tagList:Tag[]
+  tagList: Tag[]
+  createTag:(name: string) =>void
 }
