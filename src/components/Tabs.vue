@@ -1,38 +1,41 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
-  <div>
-    <ul class="types">
-      <li
-        :class="{
-          selected: value === '-',
-          [classPrefix + '-item']: classPrefix,
-        }"
-        @click="selectType('-')"
-      >
-        支出
-      </li>
-      <li
-        :class="{
-          selected: value === '+',
-          [classPrefix + '-item']: classPrefix,
-        }"
-        @click="selectType('+')"
-      >
-        收入
-      </li>
-    </ul>
-  </div>
+  <ul class="tabs">
+    <li
+      v-for="item in dataSource"
+      :key="item.value"
+      :class="liClass(item)"
+      @click="select(item)"
+    >
+      {{ item.text }}
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
+type DataSourceItem = {
+  text: string;
+  value: string;
+};
+
 @Component
-export default class Types extends Vue {
+export default class Tabs extends Vue {
+  @Prop({ required: true, type: Array }) dataSource!: DataSourceItem;
   @Prop(String) readonly value!: string;
   @Prop(String) classPrefix?: string;
 
+  liClass(item: DataSourceItem) {
+    return {
+      [this.classPrefix + "-tabs-item"]: this.classPrefix,
+      selected: item.value === this.value
+    }
+  }
+  select(item: DataSourceItem) {
+    this.$emit("update:value", item.value);
+  }
   selectType(type: string) {
     if (type !== "-" && type !== "+") {
       throw new Error("type is unknow");
@@ -43,7 +46,7 @@ export default class Types extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.types {
+.tabs {
   background: #c4c4c4;
   display: flex;
   text-align: center;
