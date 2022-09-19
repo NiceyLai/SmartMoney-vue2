@@ -12,7 +12,7 @@
       :value.sync="interval"
     />
     <ol>
-      <li v-for="group in result" :key="group.title">
+      <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">{{ beautify(group.title) }}</h3>
         <ol>
           <li v-for="item in group.items" :key="item.id" class="record">
@@ -63,14 +63,33 @@ export default class Statistics extends Vue {
   get recordList() {
     return (this.$store.state as RootState).recordList;
   }
-  get result() {
+  get groupedList() {
     const { recordList } = this;
-    type HashTableValue = { title: string; items: RecordItem[] };
-    // const hashTable: { title: string; items: RecordItem[] }[];
+    if (recordList.length === 0) {
+      return [];
+    }
     const newList = clone(recordList).sort(
       (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
     );
-    return [] ;
+    const result = [
+      {
+        title: dayjs(recordList[0].createdAt).format("YYYY-MM-DD"),
+        items: [recordList[0]],
+      },
+    ];
+    for (let i = 1; i < newList.length; i++) {
+      const current = newList[i];
+      const last = result[result.length - 1];
+      if (dayjs(last.title).isSame(dayjs(current.createdAt), "day")) {
+        last.items.push(current);
+      } else {
+        result.push({
+          title: dayjs(current.createdAt).format("YYYY-MM-DD"),
+          items: [current],
+        });
+      }
+    }
+    return result;
   }
   beforeCreate() {
     this.$store.commit("fetchRecords");
