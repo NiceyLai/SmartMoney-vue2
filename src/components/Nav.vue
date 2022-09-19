@@ -2,49 +2,48 @@
 <template>
   <nav>
     <router-link to="/money" class="item" active-class="selected">
-      <Icon name="money"/>
+      <Icon name="money" />
       记账
     </router-link>
     <router-link to="/labels" class="item" active-class="selected">
-      <Icon name="label"/>
+      <Icon name="label" />
       标签
     </router-link>
     <router-link to="/statistics" class="item" active-class="selected">
-      <Icon name="statistics"/>
+      <Icon name="statistics" />
       统计
     </router-link>
   </nav>
 </template>
 
 <script lang="ts">
-
-    export default {
-    // eslint-disable-next-line vue/multi-word-component-names
-    name: "Nav",
-}
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Nav",
+};
 </script>
 
 <style lang="scss" scoped>
-  @import "@/assets/style/helper.scss";
- nav {
-   @extend %outerShadow;
+@import "~@/assets/style/helper.scss";
+nav {
+  @extend %outerShadow;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  > .item {
+    padding: 2px 0;
+    width: 33.33333%;
     display: flex;
-    flex-direction: row;
-    font-size: 12px;
-    > .item {
-      padding: 2px 0;
-      width: 33.33333%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .icon {
-        width: 32px;
-        height: 32px;
-      }
-    }
-    > .item.selected{
-       color:$color-highlight;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .icon {
+      width: 32px;
+      height: 32px;
     }
   }
+  > .item.selected {
+    color: $color-highlight;
+  }
+}
 </style>
