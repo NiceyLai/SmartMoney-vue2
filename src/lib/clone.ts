@@ -1,5 +1,5 @@
-function clone<T>(data: T):T {
-    return JSON.parse(JSON.stringify(data))
+function clone<X>(data: X): X {
+  return JSON.parse(JSON.stringify(data));
 }
 
-export default clone
+export default clone;
