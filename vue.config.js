@@ -3,10 +3,17 @@ const path = require("path");
 
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
+  
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/money-1/'
+    : '/',
+
   transpileDependencies: true,
   lintOnSave: false,
   chainWebpack: (config) => {
     const dir = path.resolve(__dirname, "src/assets/icons"); //确定icon所在的目录
+   
+   
     config.module //config是vue把webpack的API封装暴露给我们的一个对象，让我们使用
       .rule("svg-sprite") //添加一个规则
       .test(/\.svg$/) //文件匹配正则就用上面的规则
