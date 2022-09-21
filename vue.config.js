@@ -3,7 +3,8 @@ const path = require("path");
 
 const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-  publicPath: process.env.NODE_ENV === "production" ? "/money-1-website/" : "/",
+  publicPath:
+    process.env.NODE_ENV === "production" ? "/SmartMoney-vue2--website/" : "/",
 
   transpileDependencies: true,
   lintOnSave: false,
