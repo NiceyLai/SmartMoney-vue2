@@ -29,12 +29,7 @@ import { Component } from "vue-property-decorator";
 export default class NumberPad extends Vue {
   output = "0";
   inputContent(event: MouseEvent) {
-    // if (this.output) {
-    //   this.output = this.output.match(/^\d+(?:\.\d{0,2})?/);
-    // }
 
-    // this.output = this.output.replace(/^(\-)*(\d+)\.(\d\d).*$/, "$1$2.$3");
-    
     const button = event.target as HTMLButtonElement;
     const input = button.textContent as string;
     if (this.output.length === 16) {
@@ -48,8 +43,12 @@ export default class NumberPad extends Vue {
       }
       return;
     }
-    if (this.output.indexOf(".") >= 0 && input === ".") {
-      return;
+    if (this.output.indexOf(".") >= 0) {
+      //保证里面只有一个小数点
+      if (input === ".") return;
+      // 保证只输出小数点后两位
+      if (this.output.length === this.output.indexOf(".") + 3)
+        return;
     }
     this.output += input;
   }
