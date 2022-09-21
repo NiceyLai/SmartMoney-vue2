@@ -19,7 +19,6 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import Button from "@/components/Button.vue";
 import { mixins } from "vue-class-component";
@@ -27,7 +26,6 @@ import TagHelper from "@/mixins/TagHelper";
 
 @Component({
   components: { Button },
-
 })
 export default class Labels extends mixins(TagHelper) {
   get tags() {
@@ -41,11 +39,16 @@ export default class Labels extends mixins(TagHelper) {
 
 <style lang="scss" scoped>
 .tags {
-  background: white;
+  // border: 1px solid blue;
+  margin-top: 10px;
+  background: #fff;
   font-size: 16px;
   padding-left: 16px;
   > .tag {
+    // border: 1px solid red;
+
     min-height: 44px;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;

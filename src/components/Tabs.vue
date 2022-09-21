@@ -5,7 +5,7 @@
       v-for="item in dataSource"
       :key="item.value"
       :class="liClass(item)"
-      class ='tabs-item'
+      class="tabs-item"
       @click="select(item)"
     >
       {{ item.text }}
@@ -47,8 +47,10 @@ export default class Tabs extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/style/helper.scss";
+
 .tabs {
-  background: #c4c4c4;
+  background: $color-bg1;
   display: flex;
   text-align: center;
   font-size: 24px;
@@ -59,6 +61,9 @@ export default class Tabs extends Vue {
     justify-content: center;
     align-items: center;
     position: relative;
+    &.selected {
+      color: $color-highlight;
+    }
     &.selected::after {
       content: "";
       position: absolute;
@@ -66,7 +71,7 @@ export default class Tabs extends Vue {
       left: 0;
       width: 100%;
       height: 4px;
-      background: #333;
+      background: $color-highlight;
     }
   }
 }

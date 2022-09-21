@@ -25,9 +25,9 @@ import TagHelper from "@/mixins/TagHelper";
 @Component
 export default class Tags extends mixins(TagHelper) {
   selectedTags: string[] = [];
-get tagList() {
-      return this.$store.state.tagList;
-    }
+  get tagList() {
+    return this.$store.state.tagList;
+  }
   created() {
     this.$store.commit("fetchTags");
   }
@@ -46,7 +46,7 @@ get tagList() {
 
 <style lang="scss" scoped>
 .tags {
-  background: white;
+  background: #fff;
   font-size: 14px;
   padding: 16px;
   flex-grow: 1;
@@ -56,7 +56,7 @@ get tagList() {
     display: flex;
     flex-wrap: wrap;
     > li {
-      $bg: #d9d9d9;
+      $bg: #d8e9fd;
       background: $bg;
       $h: 24px;
       height: $h;
@@ -66,7 +66,7 @@ get tagList() {
       margin-right: 12px;
       margin-top: 4px;
       &.selected {
-        background: darken($bg, 50%);
+        background: darken($bg, 15%);
         color: white;
       }
     }

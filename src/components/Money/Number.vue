@@ -29,7 +29,6 @@ import { Component } from "vue-property-decorator";
 export default class NumberPad extends Vue {
   output = "0";
   inputContent(event: MouseEvent) {
-
     const button = event.target as HTMLButtonElement;
     const input = button.textContent as string;
     if (this.output.length === 16) {
@@ -47,8 +46,7 @@ export default class NumberPad extends Vue {
       //保证里面只有一个小数点
       if (input === ".") return;
       // 保证只输出小数点后两位
-      if (this.output.length === this.output.indexOf(".") + 3)
-        return;
+      if (this.output.length === this.output.indexOf(".") + 3) return;
     }
     this.output += input;
   }
@@ -81,55 +79,29 @@ export default class NumberPad extends Vue {
   .output {
     @extend %clearFix;
     @extend %innerShadow;
-    font-size: 36px;
+    font-size: 30px;
     font-family: Consolas, monospace;
     padding: 9px 16px;
     text-align: right;
-    height: 72px;
+    height: 62px;
   }
   .buttons {
+    background-color: $color-bg1;
     @extend %clearFix;
+
     > button {
       width: 25%;
-      height: 64px;
+      height: 56px;
       float: left;
-      background: transparent;
-      border: none;
+      background-color: #f5f5f5;
+      border-radius: 15px;
+      border: 4px solid $color-bg1;
       &.ok {
-        height: 64 * 2px;
+        height: 56 * 2px;
         float: right;
       }
       &.zero {
         width: 25 * 2%;
-      }
-      $bg: #f2f2f2;
-      &:nth-child(1) {
-        background: $bg;
-      }
-      &:nth-child(2),
-      &:nth-child(5) {
-        background: darken($bg, 4%);
-      }
-      &:nth-child(3),
-      &:nth-child(6),
-      &:nth-child(9) {
-        background: darken($bg, 4 * 2%);
-      }
-      &:nth-child(4),
-      &:nth-child(7),
-      &:nth-child(10) {
-        background: darken($bg, 4 * 3%);
-      }
-      &:nth-child(8),
-      &:nth-child(11),
-      &:nth-child(13) {
-        background: darken($bg, 4 * 4%);
-      }
-      &:nth-child(14) {
-        background: darken($bg, 4 * 5%);
-      }
-      &:nth-child(12) {
-        background: darken($bg, 4 * 6%);
       }
     }
   }

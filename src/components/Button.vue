@@ -14,9 +14,11 @@ export default class Button extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
+
 .button {
-  background: #767676;
-  color: white;
+  background: $color-highlight;
+  color: #fff;
   border: none;
   border-radius: 4px;
   height: 40px;
