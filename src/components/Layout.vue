@@ -25,6 +25,7 @@ export default {
 .content {
   overflow: auto;
   flex-grow: 1;
+  position: relative;
   
 }
 </style>

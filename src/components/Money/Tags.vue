@@ -1,9 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="tags">
-    <div class="new">
-      <button @click="createTag">新增标签</button>
-    </div>
+    
     <ul class="current">
       <li
         v-for="tag in tagList"
@@ -14,6 +12,9 @@
         {{ tag.name }}
       </li>
     </ul>
+    <div class="new">
+      <button @click="createTag">新增标签</button>
+    </div>
   </div>
 </template>
 
@@ -46,12 +47,18 @@ export default class Tags extends mixins(TagHelper) {
 
 <style lang="scss" scoped>
 .tags {
-  // background: #fff;
+  width: 100%;
+  height: 36vh;
+  top: 64px;
+  overflow: auto;
+  position: absolute;
+
+  background: #fff;
   font-size: 14px;
   padding: 16px;
   flex-grow: 1;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   > .current {
     display: flex;
     flex-wrap: wrap;
@@ -66,7 +73,7 @@ export default class Tags extends mixins(TagHelper) {
       margin-right: 12px;
       margin-top: 4px;
       &.selected {
-        background: darken($bg, 15%);
+        background: darken($bg, 25%);
         color: white;
       }
     }

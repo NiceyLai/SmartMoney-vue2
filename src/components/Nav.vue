@@ -28,8 +28,12 @@ export default {
 @import "~@/assets/style/helper.scss";
 nav {
   @extend %outerShadow;
+   position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 101;
+  width: 100%;
   display: flex;
-  flex-direction: row;
   font-size: 12px;
   > .item {
     padding: 2px 0;

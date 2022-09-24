@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
+  <nav>
   <ul class="tabs" :class="{ [classPrefix + '-tabs']: classPrefix }">
     <li
       v-for="item in dataSource"
@@ -11,6 +12,7 @@
       {{ item.text }}
     </li>
   </ul>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -48,10 +50,16 @@ export default class Tabs extends Vue {
 
 <style lang="scss" scoped>
 @import "@/assets/style/helper.scss";
-
-.tabs {
+nav{
+   position: relative;
+   .tabs {
   background: $color-bg1;
   display: flex;
+   position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    width: 100%;
   text-align: center;
   font-size: 24px;
   &-item {
@@ -75,4 +83,6 @@ export default class Tabs extends Vue {
     }
   }
 }
+}
+
 </style>

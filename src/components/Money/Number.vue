@@ -76,6 +76,10 @@ export default class NumberPad extends Vue {
 @import "~@/assets/style/helper.scss";
 
 .numberPad {
+  position: absolute;
+  left: 0;
+  bottom: 54px;
+  width: 100%;
   .output {
     @extend %clearFix;
     @extend %innerShadow;

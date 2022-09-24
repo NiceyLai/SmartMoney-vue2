@@ -9,7 +9,7 @@
     <div class="chart-wrapper" ref="chartWrapper">
       <Chart class="chart" :options="chartOptions"></Chart>
     </div>
-
+<div class="list">
     <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
@@ -25,7 +25,7 @@
       </li>
     </ol>
     <div v-else class="noResult">目前没有相关记录</div>
-  </Layout>
+  </div> </Layout>
 </template>
 
 <script lang="ts">
@@ -210,8 +210,13 @@ mounted() {
 .chart {
   width: 430%;
   &-wrapper {
+    border:2px solid blue;
     overflow: auto;
     &::-webkit-scrollbar{display:none}
   }
+}
+.list{
+  max-height: 35vh;
+  overflow: auto;
 }
 </style>

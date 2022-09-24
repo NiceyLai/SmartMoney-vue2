@@ -3,7 +3,8 @@
   <Layout class-prefix="layout">
     <Number @update:value="onUpdateAmount" @submit="saveRecord"></Number>
     <Tabs :data-source="recordTypeList" :value.sync="record.type"></Tabs>
-    <div class="createdAt">
+    <div class="notes-date">
+   <div class="createdAt">
       <FormItem
         field-name="日期"
         type='date'
@@ -18,6 +19,9 @@
         :value.sync="record.notes"
       ></FormItem>
     </div>
+
+    </div>
+ 
 
     <Tags @update:value="record.tags = $event" class='tags'/>
   </Layout>
@@ -82,7 +86,12 @@ export default class Money extends Vue {
 }
 
 .tags{
-  max-height:27vh;
+  max-height:34vh;
   overflow: auto;
+}
+.notes-date{
+  position:absolute;
+  width:100%;
+  bottom:340px;
 }
 </style>

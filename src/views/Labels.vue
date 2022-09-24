@@ -39,12 +39,11 @@ export default class Labels extends mixins(TagHelper) {
 
 <style lang="scss" scoped>
 .tags {
-  // border: 1px solid blue;
   margin-top: 10px;
   background: #fff;
   font-size: 16px;
   padding-left: 16px;
-  max-height: 400px;
+  max-height: 70vh;
   overflow: auto;
   > .tag {
     // border: 1px solid red;
