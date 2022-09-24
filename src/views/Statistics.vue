@@ -6,8 +6,9 @@
       :data-source="recordTypeList"
       :value.sync="type"
     />
-
-    <Chart :options="x"></Chart>
+    <div class="chart-wrapper" ref="chartWrapper">
+      <Chart class="chart" :options="x"></Chart>
+    </div>
 
     <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
@@ -39,12 +40,16 @@ import Chart from '@/components/Chart.vue'
 
 @Component({
   components: { Tabs,Chart},
-   
+
 })
 export default class Statistics extends Vue {
   tagString(tags: Tag[]) {
     return tags.length === 0 ? "无" : tags.map((t) => t.name).join("，");
   }
+
+mounted() {
+  (this.$refs.chartWrapper as HTMLDivElement).scrollLeft = 9999;
+}
 
   beautify(string: string) {
     const day = dayjs(string);
@@ -62,7 +67,11 @@ export default class Statistics extends Vue {
     }
   }
  get x() {
-      return {
+   return {
+     grid: {
+       left: 0,
+      right:0,
+        },
         xAxis: {
           type: 'category',
           data: [
@@ -72,7 +81,8 @@ export default class Statistics extends Vue {
           ]
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          show: false
         },
         series: [{
           data: [
@@ -137,10 +147,6 @@ export default class Statistics extends Vue {
 
 <style scoped lang="scss">
 @import "~@/assets/style/helper.scss";
-  .echarts {
-    max-width: 100%;
-    height: 400px;
-  }
 .noResult {
   padding: 16px;
   text-align: center;
@@ -179,5 +185,12 @@ export default class Statistics extends Vue {
   margin-right: auto;
   margin-left: 16px;
   color: #999;
+}
+
+.chart {
+  width: 430%;
+  &-wrapper {
+    overflow: auto;
+  }
 }
 </style>
