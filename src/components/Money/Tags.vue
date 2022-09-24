@@ -46,7 +46,7 @@ export default class Tags extends mixins(TagHelper) {
 
 <style lang="scss" scoped>
 .tags {
-  background: #fff;
+  // background: #fff;
   font-size: 14px;
   padding: 16px;
   flex-grow: 1;

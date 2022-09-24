@@ -19,7 +19,7 @@
       ></FormItem>
     </div>
 
-    <Tags @update:value="record.tags = $event" />
+    <Tags @update:value="record.tags = $event" class='tags'/>
   </Layout>
 </template>
 
@@ -80,7 +80,9 @@ export default class Money extends Vue {
   display: flex;
   flex-direction: column-reverse;
 }
-.notes {
-  padding: 12px 0;
+
+.tags{
+  max-height:27vh;
+  overflow: auto;
 }
 </style>
