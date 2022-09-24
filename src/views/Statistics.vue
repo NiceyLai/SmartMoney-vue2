@@ -6,6 +6,9 @@
       :data-source="recordTypeList"
       :value.sync="type"
     />
+
+    <Chart :options="x"></Chart>
+
     <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
@@ -31,9 +34,12 @@ import Tabs from "@/components/Tabs.vue";
 import recordTypeList from "@/constants/recordTypeList";
 import dayjs from "dayjs";
 import clone from "@/lib/clone";
+import Chart from '@/components/Chart.vue'
+
 
 @Component({
-  components: { Tabs },
+  components: { Tabs,Chart},
+   
 })
 export default class Statistics extends Vue {
   tagString(tags: Tag[]) {
@@ -55,6 +61,32 @@ export default class Statistics extends Vue {
       return day.format("YYYY年M月D日");
     }
   }
+ get x() {
+      return {
+        xAxis: {
+          type: 'category',
+          data: [
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+            '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
+          ]
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [
+            820, 932, 901, 934, 1290, 1330, 1320,
+            820, 932, 901, 934, 1290, 1330, 1320,
+            820, 932, 901, 934, 1290, 1330, 1320,
+            820, 932, 901, 934, 1290, 1330, 1320, 1, 2
+          ],
+          type: 'line'
+        }],
+        tooltip: {show: true}
+      };
+    }
+
   get recordList() {
     return (this.$store.state as RootState).recordList;
   }
@@ -105,7 +137,10 @@ export default class Statistics extends Vue {
 
 <style scoped lang="scss">
 @import "~@/assets/style/helper.scss";
-
+  .echarts {
+    max-width: 100%;
+    height: 400px;
+  }
 .noResult {
   padding: 16px;
   text-align: center;
