@@ -78,13 +78,17 @@ mounted() {
             '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
             '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
-          ]
+          ],
+           axisTick: {
+      alignWithLabel: true
+    }
         },
         yAxis: {
           type: 'value',
           show: false
         },
-        series: [{
+     series: [{
+       symbolSize: 12,
           data: [
             820, 932, 901, 934, 1290, 1330, 1320,
             820, 932, 901, 934, 1290, 1330, 1320,
@@ -93,7 +97,12 @@ mounted() {
           ],
           type: 'line'
         }],
-        tooltip: {show: true}
+     tooltip: {
+       show: true,
+       triggerOn: "click",
+       position: 'top',
+  formatter: '{c}'
+     }
       };
     }
 
@@ -191,6 +200,7 @@ mounted() {
   width: 430%;
   &-wrapper {
     overflow: auto;
+    &::-webkit-scrollbar{display:none}
   }
 }
 </style>
