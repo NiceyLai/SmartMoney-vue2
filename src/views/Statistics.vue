@@ -7,7 +7,7 @@
       :value.sync="type"
     />
     <div class="chart-wrapper" ref="chartWrapper">
-      <Chart class="chart" :options="x"></Chart>
+      <Chart class="chart" :options="chartOptions"></Chart>
     </div>
 
     <ol v-if="groupedList.length > 0">
@@ -69,21 +69,21 @@ mounted() {
       return day.format("YYYY年M月D日");
     }
   }
-  get y() {
+  get keyValueList() {
     const array = [];
     const today = new Date();
     for (let i = 0; i <= 29; i++){
       const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD');
      const found=_.find(this.recordList, {createdAt: dateString})
       array.unshift({
-        date: dateString, value: found?found.amount:0
+        key: dateString, value: found?found.amount:0
       })
     }
     return array;
   }
-  get x() {
-    const keys = this.y.map(item => item.date);
-    const values = this.y.map(item => item.value);
+  get chartOptions() {
+    const keys = this.keyValueList.map(item => item.key);
+    const values = this.keyValueList.map(item => item.value);
     return {
      grid: {
        left: 0,
