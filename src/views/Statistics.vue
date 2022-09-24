@@ -92,9 +92,12 @@ mounted() {
         xAxis: {
           type: 'category',
           data: keys,
-           axisTick: {
-      alignWithLabel: true
-    }
+          axisTick: { alignWithLabel: true },
+           axisLabel: {
+            formatter: function (value: string, index: number) {
+              return value.substr(5)
+            }
+          }
         },
         yAxis: {
           type: 'value',
