@@ -6,10 +6,10 @@
       :data-source="recordTypeList"
       :value.sync="type"
     />
-    <div class="chart-wrapper" ref="chartWrapper">
-      <Chart class="chart" :options="chartOptions"></Chart>
-    </div>
     <div class="list-wrapper">
+      <div class="chart-wrapper" ref="chartWrapper">
+        <Chart class="chart" :options="chartOptions"></Chart>
+      </div>
       <ol v-if="groupedList.length > 0">
         <li v-for="(group, index) in groupedList" :key="index">
           <h3 class="title">
@@ -86,6 +86,8 @@ export default class Statistics extends Vue {
     const values = this.keyValueList.map((item) => item.value);
     return {
       grid: {
+        top: 100,
+        bottom: 40,
         left: 0,
         right: 0,
       },
@@ -115,6 +117,8 @@ export default class Statistics extends Vue {
         triggerOn: "click",
         position: "top",
         formatter: "{c}",
+        textStyle: { fontSize: 12 },
+        padding: [2, 4, 2, 4],
       },
     };
   }
@@ -206,16 +210,17 @@ export default class Statistics extends Vue {
 }
 .chart {
   width: 430%;
+
   &-wrapper {
-    border: 2px solid blue;
+      background: #fff;
     overflow: auto;
     &::-webkit-scrollbar {
       display: none;
     }
   }
 }
-.list-wrapper{
-  max-height: 35vh;
+.list-wrapper {
+  max-height: 92vh;
   overflow: auto;
 }
 </style>

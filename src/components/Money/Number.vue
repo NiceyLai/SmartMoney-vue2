@@ -79,6 +79,7 @@ export default class NumberPad extends Vue {
   position: absolute;
   left: 0;
   bottom: 54px;
+  background-color: #fff;
   width: 100%;
   .output {
     @extend %clearFix;
@@ -97,7 +98,7 @@ export default class NumberPad extends Vue {
       width: 25%;
       height: 56px;
       float: left;
-      background-color: #f5f5f5;
+      background-color: #fff;
       border-radius: 15px;
       border: 4px solid $color-bg1;
       &.ok {

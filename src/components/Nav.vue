@@ -35,6 +35,7 @@ nav {
   width: 100%;
   display: flex;
   font-size: 12px;
+    background: #fff;
   > .item {
     padding: 2px 0;
     width: 33.33333%;
