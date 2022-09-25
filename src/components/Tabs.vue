@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
+  <Layout>
   <nav>
   <ul class="tabs" :class="{ [classPrefix + '-tabs']: classPrefix }">
     <li
@@ -13,6 +14,7 @@
     </li>
   </ul>
   </nav>
+  </Layout>
 </template>
 
 <script lang="ts">
@@ -51,15 +53,15 @@ export default class Tabs extends Vue {
 <style lang="scss" scoped>
 @import "@/assets/style/helper.scss";
 nav{
-   position: relative;
-   .tabs {
-  background: $color-bg1;
-  display: flex;
-   position: fixed;
+  @extend %outerShadow;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 101;
     width: 100%;
+   .tabs {
+  background: $color-bg1;
+  display: flex;
   text-align: center;
   font-size: 24px;
   &-item {
@@ -71,14 +73,16 @@ nav{
     position: relative;
     &.selected {
       color: $color-highlight;
+      background: white;
+
     }
     &.selected::after {
       content: "";
       position: absolute;
       bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
+      left: 25%;
+      width: 50%;
+      height: 2px;
       background: $color-highlight;
     }
   }

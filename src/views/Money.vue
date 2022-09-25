@@ -19,10 +19,7 @@
         :value.sync="record.notes"
       ></FormItem>
     </div>
-
     </div>
- 
-
     <Tags @update:value="record.tags = $event" class='tags'/>
   </Layout>
 </template>
