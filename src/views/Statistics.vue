@@ -9,23 +9,24 @@
     <div class="chart-wrapper" ref="chartWrapper">
       <Chart class="chart" :options="chartOptions"></Chart>
     </div>
-<div class="list">
-    <ol v-if="groupedList.length > 0">
-      <li v-for="(group, index) in groupedList" :key="index">
-        <h3 class="title">
-          {{ beautify(group.title) }} <span>￥{{ group.total }}</span>
-        </h3>
-        <ol>
-          <li v-for="item in group.items" :key="item.id" class="record">
-            <span>{{ tagString(item.tags) }}</span>
-            <span class="notes">{{ item.notes }}</span>
-            <span>￥{{ item.amount }} </span>
-          </li>
-        </ol>
-      </li>
-    </ol>
-    <div v-else class="noResult">目前没有相关记录</div>
-  </div> </Layout>
+    <div class="list-wrapper">
+      <ol v-if="groupedList.length > 0">
+        <li v-for="(group, index) in groupedList" :key="index">
+          <h3 class="title">
+            {{ beautify(group.title) }} <span>￥{{ group.total }}</span>
+          </h3>
+          <ol>
+            <li v-for="item in group.items" :key="item.id" class="record">
+              <span>{{ tagString(item.tags) }}</span>
+              <span class="notes">{{ item.notes }}</span>
+              <span>￥{{ item.amount }} </span>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <div v-else class="noResult">目前没有相关记录</div>
+    </div>
+  </Layout>
 </template>
 
 <script lang="ts">
@@ -35,24 +36,22 @@ import Tabs from "@/components/Tabs.vue";
 import recordTypeList from "@/constants/recordTypeList";
 import dayjs from "dayjs";
 import clone from "@/lib/clone";
-import Chart from '@/components/Chart.vue'
-import _ from 'lodash'
-import day from 'dayjs'
+import Chart from "@/components/Chart.vue";
+import _ from "lodash";
+import day from "dayjs";
 
 @Component({
-  components: { Tabs,Chart},
-
+  components: { Tabs, Chart },
 })
 export default class Statistics extends Vue {
   tagString(tags: Tag[]) {
     return tags.length === 0 ? "无" : tags.map((t) => t.name).join("，");
   }
 
-mounted() {
-  const div = (this.$refs.chartWrapper as HTMLDivElement);
-    div.scrollLeft=div.scrollWidth;
- 
-}
+  mounted() {
+    const div = this.$refs.chartWrapper as HTMLDivElement;
+    div.scrollLeft = div.scrollWidth;
+  }
 
   beautify(string: string) {
     const day = dayjs(string);
@@ -72,50 +71,53 @@ mounted() {
   get keyValueList() {
     const array = [];
     const today = new Date();
-    for (let i = 0; i <= 29; i++){
-      const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD');
-     const found=_.find(this.recordList, {createdAt: dateString})
+    for (let i = 0; i <= 29; i++) {
+      const dateString = day(today).subtract(i, "day").format("YYYY-MM-DD");
+      const found = _.find(this.recordList, { createdAt: dateString });
       array.unshift({
-        key: dateString, value: found?found.amount:0
-      })
+        key: dateString,
+        value: found ? found.amount : 0,
+      });
     }
     return array;
   }
   get chartOptions() {
-    const keys = this.keyValueList.map(item => item.key);
-    const values = this.keyValueList.map(item => item.value);
+    const keys = this.keyValueList.map((item) => item.key);
+    const values = this.keyValueList.map((item) => item.value);
     return {
-     grid: {
-       left: 0,
-      right:0,
+      grid: {
+        left: 0,
+        right: 0,
+      },
+      xAxis: {
+        type: "category",
+        data: keys,
+        axisTick: { alignWithLabel: true },
+        axisLabel: {
+          formatter: function (value: string, index: number) {
+            return value.substr(5);
+          },
         },
-        xAxis: {
-          type: 'category',
-          data: keys,
-          axisTick: { alignWithLabel: true },
-           axisLabel: {
-            formatter: function (value: string, index: number) {
-              return value.substr(5)
-            }
-          }
-        },
-        yAxis: {
-          type: 'value',
-          show: false
-        },
-     series: [{
-       symbolSize: 12,
+      },
+      yAxis: {
+        type: "value",
+        show: false,
+      },
+      series: [
+        {
+          symbolSize: 12,
           data: values,
-          type: 'line'
-        }],
-     tooltip: {
-       show: true,
-       triggerOn: "click",
-       position: 'top',
-  formatter: '{c}'
-     }
-      };
-    }
+          type: "line",
+        },
+      ],
+      tooltip: {
+        show: true,
+        triggerOn: "click",
+        position: "top",
+        formatter: "{c}",
+      },
+    };
+  }
 
   get recordList() {
     return (this.$store.state as RootState).recordList;
@@ -174,12 +176,8 @@ mounted() {
 ::v-deep {
   .type-tabs-item {
     background: $color-bg1;
-    &.selected {
-      background: white;
-
-      &::after {
-        display: none;
-      }
+    &::after {
+      display: none;
     }
   }
   .interval-tabs-item {
@@ -206,16 +204,17 @@ mounted() {
   margin-left: 16px;
   color: #999;
 }
-
 .chart {
   width: 430%;
   &-wrapper {
-    border:2px solid blue;
+    border: 2px solid blue;
     overflow: auto;
-    &::-webkit-scrollbar{display:none}
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
-.list{
+.list-wrapper{
   max-height: 35vh;
   overflow: auto;
 }

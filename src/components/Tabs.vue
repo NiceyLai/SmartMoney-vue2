@@ -1,6 +1,5 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
-  <Layout>
   <nav>
   <ul class="tabs" :class="{ [classPrefix + '-tabs']: classPrefix }">
     <li
@@ -14,7 +13,6 @@
     </li>
   </ul>
   </nav>
-  </Layout>
 </template>
 
 <script lang="ts">
